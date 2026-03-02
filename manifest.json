@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Translation & Summary",
+  "description": "AI-powered translation and page summarization tool. Translate selected text or entire pages into multiple languages, and generate intelligent summaries.",
+  "version": "1.0.2",
+  "author": "Your Name",
+  "homepage_url": "https://github.com/yourusername/translation-and-summary",
+  "icons": {
+    "16": "icons/icon.svg",
+    "32": "icons/icon.svg",
+    "48": "icons/icon.svg",
+    "128": "icons/icon.svg"
+  },
+  "action": {
+    "default_title": "Translation & Summary",
+    "default_icon": {
+      "16": "icons/icon.svg",
+      "32": "icons/icon.svg"
+    }
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://*/v1/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
+

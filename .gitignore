@@ -1,0 +1,33 @@
+# 开发文档和临时文件
+requirement
+插件UI示意圖
+
+# 打包文件
+*.zip
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.bak
+
+# 用户配置（如果有）
+config.local.js
+.env
+.env.local
+
+# Node modules（如果将来添加构建工具）
+node_modules/
+dist/
+build/

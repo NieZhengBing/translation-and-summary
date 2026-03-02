@@ -1,0 +1,366 @@
+:root {
+  --ts-color-primary: #3bafda;
+  --ts-color-primary-soft: rgba(59, 175, 218, 0.12);
+  --ts-color-border: #e0e0e0;
+  --ts-color-bg: #ffffff;
+  --ts-color-bg-muted: #f7f8fa;
+  --ts-color-text: #222222;
+  --ts-color-text-muted: #666666;
+  --ts-radius-md: 10px;
+  --ts-radius-lg: 14px;
+  --ts-shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft Yahei", sans-serif;
+  background: var(--ts-color-bg);
+  color: var(--ts-color-text);
+}
+
+.ts-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.ts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ts-color-border);
+  background: var(--ts-color-bg);
+}
+
+.ts-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ts-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: var(--ts-color-primary-soft);
+  color: var(--ts-color-primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.ts-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ts-header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ts-icon-button {
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ts-color-text-muted);
+}
+
+.ts-icon-button:hover {
+  background: var(--ts-color-bg-muted);
+}
+
+.ts-tabs {
+  display: flex;
+  padding: 0 12px;
+  gap: 4px;
+  border-bottom: 1px solid var(--ts-color-border);
+}
+
+.ts-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ts-color-text-muted);
+  position: relative;
+}
+
+.ts-tab-active {
+  color: var(--ts-color-primary);
+  font-weight: 600;
+}
+
+.ts-tab-active::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 0;
+  height: 2px;
+  background: var(--ts-color-primary);
+  border-radius: 999px;
+}
+
+.ts-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 12px 8px;
+  background: var(--ts-color-bg-muted);
+}
+
+.ts-view {
+  display: none;
+}
+
+.ts-view-active {
+  display: block;
+}
+
+.ts-row {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.ts-row-inline {
+  gap: 8px;
+}
+
+.ts-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ts-field-block {
+  margin-top: 8px;
+}
+
+.ts-field label {
+  font-size: 12px;
+  color: var(--ts-color-text-muted);
+}
+
+select {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--ts-color-border);
+  font-size: 13px;
+  background: #fff;
+}
+
+.ts-field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.ts-field-label-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ts-textarea {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--ts-color-border);
+  font-size: 13px;
+  line-height: 1.5;
+  background: #fff;
+}
+
+.ts-textarea-readonly {
+  background: #fafafa;
+}
+
+.ts-actions {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.ts-button {
+  flex: 1;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.ts-button-primary {
+  background: var(--ts-color-primary);
+  color: #fff;
+  box-shadow: var(--ts-shadow-soft);
+}
+
+.ts-button-primary:hover {
+  background: #33a0c7;
+}
+
+.ts-button-ghost {
+  background: rgba(0, 0, 0, 0);
+  color: var(--ts-color-text-muted);
+  border-color: var(--ts-color-border);
+}
+
+.ts-button-ghost:hover {
+  background: var(--ts-color-bg-muted);
+}
+
+.ts-text-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 12px;
+  color: var(--ts-color-primary);
+  cursor: pointer;
+}
+
+.ts-text-button:hover {
+  text-decoration: underline;
+}
+
+.ts-banner {
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f1f7ff;
+  color: #245a90;
+  font-size: 12px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.ts-banner-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(36, 90, 144, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.ts-summary-card {
+  background: #fff;
+  border-radius: var(--ts-radius-lg);
+  padding: 10px 12px;
+  box-shadow: var(--ts-shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.ts-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.ts-summary-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ts-summary-body {
+  font-size: 13px;
+  color: var(--ts-color-text);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.ts-summary-footer {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--ts-color-text-muted);
+}
+
+.ts-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-top: 1px solid var(--ts-color-border);
+  background: var(--ts-color-bg);
+  font-size: 11px;
+  color: var(--ts-color-text-muted);
+}
+
+.ts-footer-left {
+  max-width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ts-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ts-status-text {
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ts-spinner {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-top-color: var(--ts-color-primary);
+  animation: ts-spin 0.7s linear infinite;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes ts-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 420px) {
+  .ts-row-inline {
+    flex-direction: column;
+  }
+
+  .ts-actions {
+    flex-direction: column;
+  }
+}
+

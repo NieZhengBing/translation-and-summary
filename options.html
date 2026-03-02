@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Translation & Summary - 設置</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    h1 {
+      font-size: 28px;
+      color: #2d3748;
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      color: #718096;
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    .hint {
+      font-size: 12px;
+      color: #718096;
+      margin-top: 4px;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    
+    button {
+      flex: 1;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-save {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .btn-save:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-reset {
+      background: #e2e8f0;
+      color: #2d3748;
+    }
+    
+    .btn-reset:hover {
+      background: #cbd5e0;
+    }
+    
+    .status {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .status.show {
+      opacity: 1;
+    }
+    
+    .status.success {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+    
+    .status.error {
+      background: #fed7d7;
+      color: #742a2a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚙️ 插件設置</h1>
+    <p class="subtitle">配置你的 AI 模型和翻譯總結參數</p>
+    
+    <form id="configForm">
+      <div class="form-group">
+        <label for="apiEndpoint">API 端點</label>
+        <input type="url" id="apiEndpoint" placeholder="https://api.openai.com/v1/chat/completions">
+        <div class="hint">支持 OpenAI 或兼容的 API 端點</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="apiKey">API Key *</label>
+        <input type="password" id="apiKey" placeholder="sk-..." required>
+        <div class="hint">你的 API 密鑰（必填）</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="model">模型</label>
+        <input type="text" id="model" placeholder="gpt-4o-mini">
+        <div class="hint">例如：gpt-4o-mini, gpt-4, claude-3-sonnet 等</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="targetLanguage">默認翻譯目標語言</label>
+        <select id="targetLanguage">
+          <option value="zh-CN">简体中文</option>
+          <option value="zh-TW">繁體中文</option>
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="ru">Русский</option>
+          <option value="ar">العربية</option>
+        </select>
+        <div class="hint">可在側邊欄臨時切換</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="translationPrompt">翻譯提示詞</label>
+        <textarea id="translationPrompt" placeholder="請將以下文本翻譯成{language}..."></textarea>
+        <div class="hint">使用 {language} 作為語言占位符</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="summaryPrompt">總結提示詞</label>
+        <textarea id="summaryPrompt" placeholder="請用中文總結以下網頁內容..."></textarea>
+      </div>
+      
+      <div class="button-group">
+        <button type="submit" class="btn-save">💾 保存設置</button>
+        <button type="button" class="btn-reset" id="resetBtn">🔄 恢復默認</button>
+      </div>
+      
+      <div id="status" class="status"></div>
+    </form>
+  </div>
+  
+  <script type="module" src="options.js"></script>
+</body>
+</html>
