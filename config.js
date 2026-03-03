@@ -31,10 +31,13 @@ export const DEFAULT_CONFIG = {
   maxTokens: 2000
 };
 
+// 兼容 Firefox 和 Chrome
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
 // 從 storage 獲取用戶配置，合併默認配置
 export async function getConfig() {
   return new Promise((resolve) => {
-    chrome.storage.sync.get(DEFAULT_CONFIG, (items) => {
+    browserAPI.storage.sync.get(DEFAULT_CONFIG, (items) => {
       resolve(items);
     });
   });
@@ -43,7 +46,7 @@ export async function getConfig() {
 // 保存用戶配置
 export async function saveConfig(config) {
   return new Promise((resolve) => {
-    chrome.storage.sync.set(config, () => {
+    browserAPI.storage.sync.set(config, () => {
       resolve();
     });
   });

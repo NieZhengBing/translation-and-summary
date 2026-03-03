@@ -1,0 +1,8 @@
+build/
+build.ps1
+build.sh
+*.zip
+requirement/
+插件UI示意圖/
+temp-clean/
+.git/
